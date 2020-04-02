@@ -24,18 +24,18 @@
 
 - block의 형태가 길어질 경우 (-)를 사용합니다.
 
-	- header-top__
+	- header-top__element--modifier
 
 ### 예시
 
-- 예시: 한 단어 
+- 한 단어 
 
 ```
 <div class="header"></div>
 <div class="footer"></div>
 ```
 
-- 예시: 두 단어 
+- 두 단어 
 
 ```
 <div class="header-block"></div>
@@ -57,7 +57,7 @@
 
 ### 예시
 
-- 예시: 한 단어 
+- 한 단어 
 
 ```
 <div class="header">
@@ -67,7 +67,7 @@
 </div>
 ```
 
-- 예시: 두 단어 
+- 두 단어 
 
 ```
 <div class="search-block">
