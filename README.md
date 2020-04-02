@@ -1,8 +1,8 @@
-# CSS 방법론에 대한 정리
+# CSS방법론
 
 ## 설명
 
-- 프로젝트의 규모가 커지면 CSS의 복잡도는 증가하면서, 다수의 개발자 분들과 작업을 하게될 시, CSS 코드를 일관성 있는 규칙을 가지고 작업할 필요가 있다.
+- 프로젝트의 규모가 커지면 CSS의 복잡도는 증가하면서, 다수의 개발자 분들과 작업을 하게될 시, CSS 코드를 일관성 있는 규칙을 가지고 작업할 필요가 있습니다.
 
 ### 구체적인 목적
 
@@ -20,13 +20,13 @@
 
 - Block Element Modifier
 
-- 블록 Block, 요소 Element, 상태 Modifier로 구분하여 class를 작성하며, 엄격한 네이밍 규칙을 따른다.
+- 블록 Block, 요소 Element, 상태 Modifier로 구분하여 class를 작성하며, 엄격한 네이밍 규칙을 따릅니다.
 
 ### SMACSS (스맥스)
 
 - Scalable Modular Architecture CSS
 
-- CSS의 확장형 모듈식 구조로, 각 유형에 맞는 선택자(selector)와 네이밍 작성법(naming convention), 코딩 기법을 제시한다.
+- CSS의 확장형 모듈식 구조로, 각 유형에 맞는 선택자(selector)와 네이밍 작성법(naming convention), 코딩 기법을 제시합니다.
 	
 	- 기본(Base)
 
@@ -42,7 +42,7 @@
 
 - Object oriented CSS
 
-- 중복을 최소화하고, Capsule화를 원칙으로 하는 방법론으로 중복을 최소화하는 기법을 제시한다.
+- 중복을 최소화하고, Capsule화를 원칙으로 하는 방법론으로 중복을 최소화하는 기법을 제시합니다.
 
 ## 참고한 블로그
 

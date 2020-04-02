@@ -16,9 +16,9 @@
 
 - 기능적으로 독립적이고 재사용이 가능한 Block 단위의 component를 의미합니다.
 
-	- header block, footer block, nav block, main block 등 컨텐츠 영역을 block이라 할 수 있다.
+	- header block, footer block, nav block, main block 등 컨텐츠 영역을 block이라 할 수 있습니다.
 
-	- 조금 더 구체적으로 menu block, form block, logo block도 가능하다.
+	- 조금 더 구체적으로 menu block, form block, logo block도 가능합니다.
 
 - Block 은 Block을 감쌀 수 있습니다.
 
