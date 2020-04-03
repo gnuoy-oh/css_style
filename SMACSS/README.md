@@ -29,6 +29,7 @@
 ### 예시
 
 - PC reset 
+
 ```
 	
 	/* reset */
@@ -46,7 +47,7 @@
 	a:active, a:hover{text-decoration:underline}
 	a:active{background-color:transparent}
 	address,caption,cite,code,dfn,em,var{font-style:normal;font-weight:normal}
-	```
+```
 
 ## Layout
 
