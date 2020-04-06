@@ -60,7 +60,7 @@ address,caption,cite,code,dfn,em,var{font-style:normal;font-weight:normal}
 
 	- 하위 component: 주요 component 내에 있는 component를 의미합니다.
 
-		- nav, gnb, item list, form 등
+		- l-fixed, l-width 등 
 
 - 	선택자 사용
 
@@ -95,7 +95,7 @@ address,caption,cite,code,dfn,em,var{font-style:normal;font-weight:normal}
 
 - 페이지에서 module화가 가능한, 재사용이 가능한 스타일로써 사용합니다.
 
-	- button, widget, banner, logo 등
+	- widget, nav, gnb, item list, form, icon 등
 
 - 레이아웃 구성요소 안에 존재하지만, 다른 모듈에도 존재할 수 있습니다.
 
@@ -143,16 +143,72 @@ address,caption,cite,code,dfn,em,var{font-style:normal;font-weight:normal}
 
 ### 설명
 
-- 여기부터~~~~~
+- 상태를 나타내는 스타일로, 기존의 스타일에서 오버라이딩을 하기도 합니다.
+
+	- hidden, expand, active, hover 등 
+
+- prefix는 'is-' / 's-'를 사용합니다.
+
+	- is-error, is-tab-active, is-active, is-hidden 등
+
+- module, layout에 둘 다 적용할 수 있습니다.
+
+- 페이지가 로드된 후의 상태 변화를 나타내므로 자바스크립트에 의존합니다.
 
 ### 예시
 
-- 여기부터~~~~~
+- button state
+
+```
+//html
+<div clsss="btn_area">
+	<button type="button" class="btn_comm is-active"> 좋아요 </button>
+	<button type="button" class="btn_comm btn_bad"> 좋아요 </button>
+</div>
+
+//css
+.btn_comm{
+	display: inline-block;
+	background: #ddd;
+}
+.btn_comm.is-active{
+	background: red;
+}
+.btn_comm.is-hidden{
+	display: none;
+}
+```
+
+## Theme
+
+### 설명
+
+- 페이지 전반적인 테마를 제어할 때 사용합니다.
+
+- 색상이나 이미지를 변하지 않는 스타일과 분리해서 기존 스타일을 재선언하여 사용합니다.
+
+- 적용 범위가 넓은 테마는 prefix "theme-"를 붙여 사용합니다.
+
+### 예시
+
+- theme 재선언
+
+```
+// common.css
+.header{
+	backgrund-color: #fff;
+}
+
+// theme.css
+.header{
+	background-color: #ccc;
+}
+```
 
 ## 참고
 
-- [BEM이란?_1](https://junwoo45.github.io/2019-08-29-BEM/)
+- [SMACSS이란?_1](https://webmaster.wspaper.org/archives/devsharing/smacss-%EC%9C%A0%EC%97%B0%ED%95%98%EA%B3%A0-%EB%AA%A8%EB%93%88%ED%99%94%EB%90%9C-css-%EB%B0%A9%EB%B2%95%EB%A1%A0-%ED%95%99%EC%8A%B5-1-%EC%8A%A4%ED%83%80%EC%9D%BC%EC%9D%98)
 
-- [BEM이란?_2](https://nykim.work/15)
+- [SMACSS이란?_2](https://wit.nts-corp.com/2015/04/16/3538)
 
-- [BEM이란?_3](https://medium.com/@jinminkim_50502/css-bem-smacss-oocss-9e4d6beb0a38)
+- [SMACSS이란?_3](https://medium.com/@jinminkim_50502/css-bem-smacss-oocss-9e4d6beb0a38)
