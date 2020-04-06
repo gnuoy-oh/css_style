@@ -4,6 +4,8 @@
 
 - Id는 사용하지 않고, class를 사용하여 작성을 합니다.
 
+	- 개발, 디버깅, 유지보수를 위해서 CSS 선택자의 이름을 가능한 명확하게 만드는 것이 좋습니다.
+
 - 어떻게 보이는지가 아닌, 목적에 따라서 작명합니다.
 
 - block__element--modifier-typea
@@ -19,6 +21,8 @@
 	- header block, footer block, nav block, main block 등 컨텐츠 영역을 block이라 할 수 있습니다.
 
 	- 조금 더 구체적으로 menu block, form block, logo block도 가능합니다.
+
+- Block은 환경에 영향을 받지 않아야 하므로, 여백이나 위치를 설정하지 않습니다.
 
 - Block 은 Block을 감쌀 수 있습니다.
 
@@ -42,18 +46,19 @@
 <div class="login-form"></div>
 ```
 
-
 ## Element
 
 ![img_block](image/img_element.png)
 
 ### 설명
 
-- Element 요소는 Block 내부 구성을 표현하는 단위로, 독립적으로는 의미가 없으며 Block을 붙어서 사용하는 Component 입니다.
+- Element 요소는 Block 내부에서 특정 기능을 담당하는 부분으로, 독립적으로는 의미가 없으며 Block을 붙어서 사용하는 Component입니다.
 
 	- Element는 의존적인 형태로, 자신이 속한 Block내에서만 의미를 가집니다.
 
 - Block 안에서 특정 기능을 수행하는 component로, **두 개의 언더스코어(_)**로 표기합니다.
+
+	- 형태가 아닌, 목적에 맞게 작성합니다.
 
 ### 예시
 
@@ -90,11 +95,19 @@
 
 - Block이나 Element 뒤에 **두 개의 하이픈(-)**을 추가하여 Modifier를 표시합니다.
 
+- boolean (true/false) 타입으로 표현할 수 있습니다.
+
+	- form__button--disabled
+
 - key-value 형태로도 표현할 수 있습니다.
+
+	- key, value를 하이픈으로 연결해서 표시합니다.
 
 	- search-form--theme-special
 
 	- button--state-danger
+
+	- header__button-logo--color-red
 
 ### 예시
 
