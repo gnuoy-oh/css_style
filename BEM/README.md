@@ -1,139 +1,220 @@
-# BEM
+# BEM 공식 문서 정리
 
-- 블록(Block), 요소(Element), 상태(Modifier)로 구분하여 클래스를 작성하며, 서로 다른 역할을 수행하도록 차별화합니다.
+## BEM Documentation 을 보고 작성하였습니다.
 
-- Id는 사용하지 않고, class를 사용하여 작성을 합니다.
-
-	- 개발, 디버깅, 유지보수를 위해서 CSS 선택자의 이름을 가능한 명확하게 만드는 것이 좋습니다.
-
-- 어떻게 보이는지가 아닌, 목적에 따라서 작명합니다.
-
-- block__element--modifier-typea
+[[BEM Methodology]](https://en.bem.info/methodology/)
 
 ## Block
 
-![img_block](image/img_block.png)
+- Block은 웹 페이지의 구성 요소에 해당하는, 큰 단위의 독립적인 하나의 컴포넌트다.
+- Block은 동작 / 템플릿 / 스타일 / 기타 기술적 구현 등을 캡슐화 하고, 독립적으로 재사용이 가능해야 한다.
+- "block", 길 경우 "block-long-name"의 작명 규칙
 
-### 설명
+### Block의 특징
 
-- 기능적으로 독립적이고 재사용이 가능한 Block 단위의 component를 의미합니다.
+- **중첩 가능**
+    - Block은 중첩이 여러 레벨로 중첩이 가능하다.
 
-	- header block, footer block, nav block, main block 등 컨텐츠 영역을 block이라 할 수 있습니다.
+        ![중첩](image/1.png)
 
-	- 조금 더 구체적으로 menu block, form block, logo block도 가능합니다.
+        ```jsx
+        <!-- `header` block -->
+        <header class="header">
+            <!-- Nested `logo` block -->
+            <div class="logo"></div>
 
-- Block은 환경에 영향을 받지 않아야 하므로, 여백이나 위치를 설정하지 않습니다.
+            <!-- Nested `search-form` block -->
+            <form class="search-form"></form>
+        </header>
+        ```
 
-- Block 은 Block을 감쌀 수 있습니다.
+- **유연한 배치**
+    - Block은 독립된 하나의 컴포넌트이기 때문에, 위치를 유연하게 이동할 수 있다.
+        - 즉 상위의 어떤 block에게 종속적이지 않다.
 
-- block의 형태가 길어질 경우 (-)를 사용합니다.
+        ![배치](image/2.png)
 
-	- header-top__element--modifier
+        ![배치](image/3.png)
 
-### 예시
+- **재사용이 가능**
+    - 하나의 block은 여러 갯수 혹은 다양한 곳에서 사용할 수 있다.
 
-- 한 단어 
-
-```
-<div class="header"></div>
-<div class="footer"></div>
-```
-
-- 두 단어 
-
-```
-<div class="header-block"></div>
-<div class="login-form"></div>
-```
+        ![재사용성](image/4.png)
 
 ## Element
 
-![img_block](image/img_element.png)
+- block의 구성 요소가 되고, block과 분리되어 사용할 수 없다.
+- element는 사용 목적에 따라 작명되어야 하고, 상태에 따라 작명되어서는 안된다.
+    - (목적) 이것은 무엇인가? → item, text, button, form ...
+    - (상태) 어떤 타입인가? 어떤 컬러? 있음 없음? → red, big, active, disabled ... (=== modifier)
+- "block-name__element-name"의 작명 규칙
+    - 더블 언더스코어 (__)로 element임을 알려준다.
 
-### 설명
+### Element의 특징
 
-- Element 요소는 Block 내부에서 특정 기능을 담당하는 부분으로, 독립적으로는 의미가 없으며 Block을 붙어서 사용하는 Component입니다.
+- **중첩 가능**
+    - element(요소)는 서로 중첩이 가능하다.
+    - element(요소)에 또 다른 element(요소)를 정의하지 않는다.
+        - "block__element1__element2"와 같은 계층 구조를 정의하지 않는다.
 
-	- Element는 의존적인 형태로, 자신이 속한 Block내에서만 의미를 가집니다.
+            ```jsx
+            <!--
+                Correct. The structure of the full element name follows the pattern:
+                `block-name__element-name`
+            -->
+            <form class="search-form">
+                <div class="search-form__content">
+                    <input class="search-form__input">
 
-- Block 안에서 특정 기능을 수행하는 component로, **두 개의 언더스코어(_)**로 표기합니다.
+                    <button class="search-form__button">Search</button>
+                </div>
+            </form>
 
-	- 형태가 아닌, 목적에 맞게 작성합니다.
+            <!--
+                Incorrect. The structure of the full element name doesn't follow the pattern:
+                `block-name__element-name`
+            -->
+            <form class="search-form">
+                <div class="search-form__content">
+                    <!-- Recommended: `search-form__input` or `search-form__content-input` -->
+                    <input class="search-form__content__input">
 
-### 예시
+                    <!-- Recommended: `search-form__button` or `search-form__content-button` -->
+                    <button class="search-form__content__button">Search</button>
+                </div>
+            </form>
+            ```
 
-- 한 단어 
+- **Block에게 의존적**
+    - element(요소)는 항상 block 내에 속하기 때문에 block과 별개로 사용해서는 안된다.
 
-```
-<div class="header">
-	<div class="header__logo"></div>
-	<a href="#none" class="header__link"></a>
-	<div class="header__tab"></div>
-</div>
-```
+        ![block의존성](image/5.png)
 
-- 두 단어 
+        ```jsx
+        <!-- Correct. Elements are located inside the `search-form` block -->
+        <!-- `search-form` block -->
+        <form class="search-form">
+            <!-- `input` element in the `search-form` block -->
+            <input class="search-form__input">
 
-```
-<div class="search-block">
-	<div class="search-block__content">
-		<input class="search-block__input"></input>
-		<button class="seach-block__button">Search</button>
-	</div>
-</div>
-```
+            <!-- `button` element in the `search-form` block -->
+            <button class="search-form__button">Search</button>
+        </form>
+
+        <!--
+            Incorrect. Elements are located outside of the context of
+            the `search-form` block
+        -->
+        <!-- `search-form` block -->
+        <form class="search-form">
+        </form>
+
+        <!-- `input` element in the `search-form` block -->
+        <input class="search-form__input">
+
+        <!-- `button` element in the `search-form` block-->
+        <button class="search-form__button">Search</button>
+        ```
+
+- **element와 block의 구분**
+    - 범용적?글로벌하게 사용하는 element(요소)는 block으로 사용할 수 있다.
+
+        ```
+        jsx
+        <!-- `search-form` block -->
+        <div class="search-form">
+            <!-- `input` block -->
+            <input class="input">
+
+            <!-- `button` block -->
+            <button class="button">Search</button>
+        </div>
+        ```
+
+### (?) Block과 Element 의 올바른 사용
+
+- **block**
+    - 코드의 어떤 section 혹은 area가 재사용 될 수 있고, 다른 페이지 구성 요소에 의존하지 않는 경우! block으로 작업한다.
+- **element**
+    - 코드의 어떤 setcion 혹은 area가 상위 block없이는 별도로 사용할 수 없는 경우! element를 사용한다.
+    - BEM규칙상 요소에 요소를 이어 작명할수 없기 때문에 (block__ele1__ele1), 새로운 block 단위를 만들어서 쪼개어 단순화 시키도록 한다.
 
 ## Modifier
 
-![img_block](image/img_modifier.png)
+- block 혹은 element(요소)의 기존 모양에서 또 다른 모양이나 상태, 동작을 정의하는 것으로, 필수적 사용은 아니다.
+    - 모양 (사이즈 별 / 테마 별 - size_s, theme_island)
+    - 상태 (현재와 무엇이 다른가? - disabled, focused....)
+    - 행동 (어떻게 행동/위치 하는지? - direciont_left-top)
+- "block-name__element-name_modifier-name_modifier-value"의 작명 규칙
+    - modifier는 하나의 언더 스코어를 사용한다 (_)
+    - 현재 IMA는 더블 하이픈(—)을 사용한다.
+        - 예) text-input—disabled
 
-### 설명
+### Modifier의 특징
 
-- Block이나 Element의 상태를 나타낼 수 있는 속성으로, Block이나 Element의 상태, 외관을 표현합니다.
+- modifier는 절대 단독으로 사용할 수 없고, 디폴트의 block이나 element 가 존재해야만 한다.
 
-	- 특정 요소의 스타일을 수정해야할 필요가 있을 때 활용합니다.
+    ![modifier](image/6.png)
 
-- Block이나 Element 뒤에 **두 개의 하이픈(-)**을 추가하여 Modifier를 표시합니다.
+    ```jsx
+    <!--
+        Correct. The `search-form` block has the `theme` modifier with
+        the value `islands`
+    -->
+    <form class="search-form search-form_theme_islands">
+        <input class="search-form__input">
 
-- boolean (true/false) 타입으로 표현할 수 있습니다.
+        <button class="search-form__button">Search</button>
+    </form>
 
-	- form__button--disabled
+    <!-- Incorrect. The modified class `search-form` is missing -->
+    <form class="search-form_theme_islands">
+        <input class="search-form__input">
 
-- key-value 형태로도 표현할 수 있습니다.
+        <button class="search-form__button">Search</button>
+    </form>
+    ```
 
-	- key, value를 하이픈으로 연결해서 표시합니다.
+### Modifier의 상태 별 사용 방법
 
-	- search-form--theme-special
+- **Boolean**
+    - 해당 element의 있고 없음을 의미 할 때 사용하고, 어떤 테마나 컬러와는 관계가 없다.
+    - "block-name_modifier-name" / "block-name__modifier-name_modifier-name" 의 구조
 
-	- button--state-danger
+        ```jsx
+        <!-- The `search-form` block has the `focused` Boolean modifier -->
+        <form class="search-form search-form_focused">
+            <input class="search-form__input">
 
-	- header__button-logo--color-red
+            <!-- The `button` element has the `disabled` Boolean modifier -->
+            <button class="search-form__button search-form__button_disabled">Search</button>
+        </form>
+        ```
 
-### 예시
+- **key - value**
+    - 요소의 테마나 컬러와 같은 값을 사용할 때 사용한다. ("menu_theme_islands)
+    - "block-name_modifier-name_modifier-value" / "block-name__element-name_modifier-name_modifier-value" 의 구조
 
-- 예시
+        ```jsx
+        <!-- The `search-form` block has the `theme` modifier with the value `islands` -->
+        <form class="search-form search-form_theme_islands">
+            <input class="search-form__input">
 
-```
-<div class="gnb gnb--theme-header">
-	<ul class="gnb__list">
-		<li class="gnb__item">
-			<button type="button" class="gnb__button'>
-				Click
-			</button>
-		</li>
-		<li class="gnb__item">
-			<button type="button" class="gnb__button gnb__button--active'>
-				Click
-			</button>
-		</li>
-	</ul>
-</div>
-```
+            <!-- The `button` element has the `size` modifier with the value `m` -->
+            <button class="search-form__button search-form__button_size_m">Search</button>
+        </form>
 
-## 참고
+        <!-- You can't use two identical modifiers with different values simultaneously -->
+        <form class="search-form
+                     search-form_theme_islands
+                     search-form_theme_lite">
 
-- [BEM이란?_1](https://junwoo45.github.io/2019-08-29-BEM/)
+            <input class="search-form__input">
 
-- [BEM이란?_2](https://nykim.work/15)
-
-- [BEM이란?_3](https://medium.com/@jinminkim_50502/css-bem-smacss-oocss-9e4d6beb0a38)
+            <button class="search-form__button
+                           search-form__button_size_s
+                           search-form__button_size_m">
+                Search
+            </button>
+        </form>
+        ```
